@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
+    <script type="text/javascript" src="/main.js" defer></script>
+    <script type="text/javascript" src="lastfm.api.md5.js"></script>
+    <script type="text/javascript" src="lastfm.api.js"></script>
+    <script type="text/javascript" src="lastfm.api.cache.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Barley</h1>
+    </header>
+    <main>
+      <section id="search">
+        <input type="text" id="album-input" placeholder="Search for an album" />
+        <input type="text" id="artist-input" placeholder="Search for an artist" />
+        <button id="search-button">Search</button>
+      </section>
+      <section id="tracklist-section">
+        <h2>Album</h2>
+        <div id="track-list">
+        </div>
+        <button id="get-marks-button">Get marks</button>
+      </section>
+
+    </main>
+  </body>
+</html>
