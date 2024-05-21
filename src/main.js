@@ -1,33 +1,17 @@
 const { invoke } = window.__TAURI__.tauri;
 
-/* let greetInputEl;
-let greetMsgEl;
-
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
-});
- */
-
-
 /* Create a cache object */
-var cache = new LastFMCache();
+// var cache = new LastFMCache();
 
 /* Create a LastFM object */
 var lastfm = new LastFM({
   apiKey    : '973bb76de3c689a06216411f7e21b57d',
   apiSecret : 'afcbf26fab3098359e564f05e679a19b',
-  cache     : cache
+  // cache     : cache
 });
+
+
+// Global variables
 
 var album = document.getElementById('album-input');
 var artist = document.getElementById('artist-input');
@@ -36,8 +20,10 @@ var ntrack = 0;
 var totalTracks = 0;
 var average = 0;
 
+// Load album info
+
 document.getElementById('search-button').addEventListener('click', async (event) => { 
-  event.preventDefault(); 
+  event.preventDefault(); // so it doesn't refresh the page
   lastfm.album.getInfo({artist: artist.value, album: album.value}, {
     success: function(data){
       var trackList = document.getElementById('track-list');
@@ -58,7 +44,7 @@ document.getElementById('search-button').addEventListener('click', async (event)
         trackList.appendChild(markSlider);
       });
       totalTracks = ntrack;
-      ntrack = 0;
+      ntrack = 0; // Reset the track counter
     }, 
     error: function(message){ 
       console.log(message); 
@@ -69,19 +55,11 @@ document.getElementById('search-button').addEventListener('click', async (event)
 
 document.getElementById('get-marks-button').addEventListener('click', async (event) => {
   event.preventDefault(); 
-  var marks = [];
+  var marks = []; // Array to store the marks
   for (var i = 1; i <= totalTracks; i++) {
     var markSlider = document.getElementById('mark-' + i);
-    marks.push(parseInt(markSlider.value));
-    console.log('Track ' + i + ' mark: ' + markSlider.value);
+    marks.push(parseInt(markSlider.value)); // Add the mark to the array
   }
-  invoke('process_album_marks', { marks: marks }).then(function(avg) {
-    average = avg;
-    console.log('Average: ' + average);
-  })
-});
-
-//[TODO] escribir en un archivo de texto, el promedio de las calificaciones de las canciones del album
-// para eso igual mejor utilizar rust que soporta mejor archivos locales???
-// considerar escribir en csv o json
+  invoke('process_album_marks', {title: album.value, artist: artist.value, marks: marks }) // invoke rust function
+})
 
