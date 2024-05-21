@@ -45,6 +45,10 @@ document.getElementById('search-button').addEventListener('click', async (event)
       });
       totalTracks = ntrack;
       ntrack = 0; // Reset the track counter
+      // create album cover object and load medium size album cover image
+      var albumCover = document.getElementById('album-cover');
+      albumCover.src = data.album.image[2]['#text'];
+      console.log(data);
     }, 
     error: function(message){ 
       console.log(message); 
@@ -62,4 +66,6 @@ document.getElementById('get-marks-button').addEventListener('click', async (eve
   }
   invoke('process_album_marks', {title: album.value, artist: artist.value, marks: marks }) // invoke rust function
 })
+
+
 
