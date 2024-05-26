@@ -18,7 +18,6 @@ var artist = document.getElementById('artist-input');
 
 var ntrack = 0;
 var totalTracks = 0;
-var average = 0;
 
 // Load album info
 
@@ -31,7 +30,10 @@ document.getElementById('search-button').addEventListener('click', async (event)
       data.album.tracks.track.forEach(function(track) {
         ntrack++;
 
-        var newTrack = document.createElement('li');
+        var trackContainer = document.createElement('div');
+        trackContainer.className = 'track-container';
+
+        var newTrack = document.createElement('label');
         newTrack.textContent = track.name;
 
         var markSlider = document.createElement('input');
@@ -39,10 +41,12 @@ document.getElementById('search-button').addEventListener('click', async (event)
         markSlider.max = '10';
         markSlider.step = '1';
         markSlider.id = 'mark-' + ntrack;
-        
-        trackList.appendChild(newTrack);
-        trackList.appendChild(markSlider);
+
+        trackContainer.appendChild(newTrack);
+        trackContainer.appendChild(markSlider);
+        trackList.appendChild(trackContainer);
       });
+      document.getElementById('get-marks-button').style.display = 'flex';
       totalTracks = ntrack;
       ntrack = 0; // Reset the track counter
       // create album cover object and load medium size album cover image

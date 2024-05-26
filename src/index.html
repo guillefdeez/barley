@@ -5,15 +5,11 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tauri App</title>
-    <script type="text/javascript" src="/main.js" defer></script>
+    <script type="text/javascript" src="main.js" defer></script>
     <script type="text/javascript" src="lastfm.api.md5.js"></script>
     <script type="text/javascript" src="lastfm.api.js"></script>
-    <script type="text/javascript" src="lastfm.api.cache.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Barley</h1>
-    </header>
     <main>
       <section id="search">
         <input type="text" id="album-input" placeholder="Search for an album" />
@@ -21,15 +17,11 @@
         <button id="search-button">Search</button>
       </section>
       <div id="results" class="sections-container">
-        <section class="section-2">
-          <h2>Album</h2>
+        <section class="form">
           <div id="track-list">
           </div>
-          <button id="get-marks-button">Get marks</button>
         </section>
-        <section class="section-3">
-          <img id="album-cover"></img>
-        </section>
+        <button id="get-marks-button">Get marks</button>
       </div>
     </main>
   </body>
