@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 albums.csv
+
+run.bat
+demo.html
+Helvetica*

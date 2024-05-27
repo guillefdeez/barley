@@ -39,8 +39,10 @@ document.getElementById('search-button').addEventListener('click', async (event)
         var markSlider = document.createElement('input');
         markSlider.min = '0';
         markSlider.max = '10';
-        markSlider.step = '1';
+        markSlider.step = '0.1';
         markSlider.id = 'mark-' + ntrack;
+        markSlider.className = 'slider';
+        markSlider.type = 'range';
 
         trackContainer.appendChild(newTrack);
         trackContainer.appendChild(markSlider);
